@@ -358,6 +358,12 @@ python3 ok -q protected_secret --local
 
 
 
+In the end, you can use doctest module to run all your doctest.
+
+```shell
+python3 -m doctest lab03.py
+```
+
 
 
 

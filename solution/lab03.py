@@ -66,7 +66,14 @@ def ordered_digits(x):
     False
 
     """
-    "*** YOUR CODE HERE ***"
+    cur = x % 10
+    x //= 10
+    while x > 0:
+        prev, cur = cur, x % 10
+        if prev < cur:
+            return False
+        x //= 10
+    return True
 
 
 def get_k_run_starter(n, k):
@@ -90,12 +97,12 @@ def get_k_run_starter(n, k):
     """
     i = 0
     final = None
-    while ____________________________:
-        while ____________________________:
-            ____________________________
-        final = ____________________________
-        i = ____________________________
-        n = ____________________________
+    while i <= k:
+        while n // 10 != 0 and n % 10 > (n % 100) // 10:
+            n //= 10
+        final = n % 10
+        i = i + 1
+        n = n // 10
     return final
 
 
@@ -114,7 +121,11 @@ def make_repeater(func, n):
     >>> make_repeater(square, 0)(5) # Yes, it makes sense to apply the function zero times!
     5
     """
-    "*** YOUR CODE HERE ***"
+    f = lambda x: x
+    while n > 0:
+        f = composer(func, f)
+        n -= 1
+    return f
 
 
 def composer(func1, func2):
@@ -132,7 +143,7 @@ def apply_twice(func):
     >>> apply_twice(square)(2)
     16
     """
-    "*** YOUR CODE HERE ***"
+    return make_repeater(func, 2)
 
 
 def protected_secret(password, secret, num_attempts):
@@ -154,5 +165,12 @@ def protected_secret(password, secret, num_attempts):
     SECRET LOCKED
     """
     def get_secret(password_attempt):
-        "*** YOUR CODE HERE ***"
+        if num_attempts == 0:
+            print('SECRET LOCKED')
+            return protected_secret(password, secret, num_attempts)
+        if password_attempt == password:
+            print(secret)
+            return protected_secret(password, secret, num_attempts)
+        print('INCORRECT PASSWORD')
+        return protected_secret(password, secret, num_attempts - 1)    
     return get_secret
