@@ -14,7 +14,7 @@ Get your starter file by cloning the repository: https://github.com/JacyCui/sicp
 git clone https://github.com/JacyCui/sicp-lab03.git
 ```
 
-`lab01.zip` is the starter file you need, you might need to unzip the file to get the skeleton code.
+`lab03.zip` is the starter file you need, you might need to unzip the file to get the skeleton code.
 
 ```shell
 unzip lab03.zip
